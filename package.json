@@ -1,0 +1,28 @@
+{
+  "name": "langlearn_web_backend",
+  "version": "1.0.0",
+  "description": "Backend of langlearn chatbot application",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon ./src/app.js"
+  },
+  "keywords": [
+    "chatbot",
+    "langlearn",
+    "backend",
+    "webapp"
+  ],
+  "author": "langlearn",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.2",
+    "express": "^4.18.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.6.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
