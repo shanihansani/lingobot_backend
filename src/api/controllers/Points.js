@@ -69,8 +69,21 @@ const getPoint = async (req, res) => {
   }
 };
 
+// Function for get point by user id
+const getPointByUserId = async (req, res) => {
+  const { userId } = req.params;
+
+  try {
+    const points = await Point.find({ userId });
+    return res.status(200).json(points);
+  } catch (err) {
+    return res.json({ errors: err });
+  }
+};
+
 module.exports = {
   createPoint,
   updatePoint,
   getPoint,
+  getPointByUserId,
 };

@@ -16,6 +16,9 @@ router.post("/create", authUser, createPoint);
 // Get points
 router.get("/get/:userId/:language", authUser, getPoint);
 
+// Get points by user id
+router.get("/get/all/:userId", authUser, getPoint);
+
 // Update points
 router.put("/update/:userId/:language/:points", authUser, updatePoint);
 
