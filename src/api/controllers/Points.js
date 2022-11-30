@@ -40,7 +40,7 @@ const updatePoint = async (req, res) => {
   const { userId, language, points } = req.params;
 
   try {
-    await Point.findOneAndUpdate(
+    const updated = await Point.findOneAndUpdate(
       { userId, language },
       { points },
       {
@@ -50,6 +50,7 @@ const updatePoint = async (req, res) => {
     );
     res.status(200).json({
       created: true,
+      updated,
       success: { message: "Successfully updated the point!" },
     });
   } catch (err) {
@@ -60,6 +61,8 @@ const updatePoint = async (req, res) => {
 // Function for get point
 const getPoint = async (req, res) => {
   const { userId, language } = req.params;
+
+  console.log("First" + userId);
 
   try {
     const points = await Point.find({ userId, language });
@@ -73,9 +76,24 @@ const getPoint = async (req, res) => {
 const getPointByUserId = async (req, res) => {
   const { userId } = req.params;
 
+  console.log("Second" + userId);
+
   try {
     const points = await Point.find({ userId });
-    return res.status(200).json(points);
+    // Construct new array
+    let newPointsArray = [];
+    points.forEach((point) => {
+      if (point.language === "English") {
+        newPointsArray.push(point);
+      }
+    });
+    points.forEach((point) => {
+      if (point.language !== "English") {
+        newPointsArray.push(point);
+      }
+    });
+    console.log(newPointsArray);
+    return res.status(200).json(newPointsArray);
   } catch (err) {
     return res.json({ errors: err });
   }

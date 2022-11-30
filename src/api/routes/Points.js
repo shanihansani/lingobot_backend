@@ -5,21 +5,26 @@ const Express = require("express");
 const { authUser } = require("../middlewares/Authorization");
 
 // Custom libraries & modules
-const { createPoint, updatePoint, getPoint } = require("../controllers/Points");
+const {
+  createPoint,
+  updatePoint,
+  getPoint,
+  getPointByUserId,
+} = require("../controllers/Points");
 
 // Global instances
 const router = Express.Router();
 
 // Create points
-router.post("/create", authUser, createPoint);
+router.post("/create", createPoint);
 
 // Get points
-router.get("/get/:userId/:language", authUser, getPoint);
+router.get("/get/:userId/:language", getPoint);
 
 // Get points by user id
-router.get("/get/all/:userId", authUser, getPoint);
+router.get("/all/get/:userId", getPointByUserId);
 
 // Update points
-router.put("/update/:userId/:language/:points", authUser, updatePoint);
+router.put("/update/:userId/:language/:points", updatePoint);
 
 module.exports = router;

@@ -5,12 +5,15 @@ const mongoose = require("mongoose");
 const PointSchema = new mongoose.Schema({
   userId: {
     type: "String",
+    required: true,
   },
   language: {
     type: "String",
+    required: true,
   },
   points: {
     type: "Number",
+    required: true,
   },
 });
 
