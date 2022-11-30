@@ -58,6 +58,31 @@ const updatePoint = async (req, res) => {
   }
 };
 
+// Function for update points by id
+const updatePointsById = async (req, res) => {
+  const { pointsId, points } = req.params;
+
+  console.log(pointsId);
+
+  try {
+    const updated = await Point.findOneAndUpdate(
+      { _id: pointsId },
+      { points },
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
+    res.status(200).json({
+      created: true,
+      updated,
+      success: { message: "Successfully updated the point!" },
+    });
+  } catch (err) {
+    res.json({ errors: err });
+  }
+};
+
 // Function for get point
 const getPoint = async (req, res) => {
   const { userId, language } = req.params;
@@ -104,4 +129,5 @@ module.exports = {
   updatePoint,
   getPoint,
   getPointByUserId,
+  updatePointsById,
 };

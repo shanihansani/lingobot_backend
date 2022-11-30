@@ -10,6 +10,7 @@ const {
   updatePoint,
   getPoint,
   getPointByUserId,
+  updatePointsById,
 } = require("../controllers/Points");
 
 // Global instances
@@ -26,5 +27,8 @@ router.get("/all/get/:userId", getPointByUserId);
 
 // Update points
 router.put("/update/:userId/:language/:points", updatePoint);
+
+// Update points by id
+router.put("/updatebyid/:pointsId/:points", updatePointsById);
 
 module.exports = router;
